@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ThreatLens Enterprise</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">TL</div>
+        <div>
+          <h1>ThreatLens Enterprise</h1>
+          <p>Security architecture workspace</p>
+        </div>
+      </div>
+
+      <div class="controls-card">
+        <div class="step-tabs">
+          <button class="step-tab active" data-step="1" type="button">Scope</button>
+          <button class="step-tab" data-step="2" type="button">Components</button>
+          <button class="step-tab" data-step="3" type="button">Data</button>
+          <button class="step-tab" data-step="4" type="button">Connections</button>
+          <button class="step-tab" data-step="5" type="button">Analyze</button>
+        </div>
+
+        <div class="controls-grid">
+          <button id="prevStep" class="secondary" type="button">Back</button>
+          <button id="nextStep" class="secondary" type="button">Next</button>
+          <button id="generateBtn" type="button">Generate Threat Model</button>
+          <button id="extractContext" class="secondary" type="button">Auto Extract</button>
+          <button id="loadSample" class="secondary" type="button">Load Sample</button>
+          <button id="exportJson" class="secondary" type="button">Export JSON</button>
+          <button id="exportMd" class="secondary" type="button">Export Markdown</button>
+        </div>
+      </div>
+
+      <form id="modelForm" class="form-shell">
+        <section class="step active" data-step="1">
+          <div class="section-head">
+            <h2>System Scope</h2>
+            <p>Define the target system and choose the analysis lens.</p>
+          </div>
+
+          <label>System Name
+            <input id="systemName" placeholder="Enterprise Customer Platform" />
+          </label>
+
+          <label>Framework
+            <select id="framework">
+              <option>STRIDE</option>
+              <option>LINDDUN</option>
+              <option>NIST</option>
+              <option>OWASP</option>
+              <option>MITRE</option>
+              <option>PASTA</option>
+            </select>
+          </label>
+
+          <label>System Description
+            <textarea id="systemDescription" placeholder="Describe the architecture, major user roles, data handled, external services, and sensitive workflows."></textarea>
+          </label>
+        </section>
+
+        <section class="step" data-step="2">
+          <div class="section-head">
+            <h2>Components</h2>
+            <p>Add the core building blocks of the system.</p>
+          </div>
+
+          <div class="builder-row">
+            <input id="componentName" placeholder="Component name" />
+            <select id="componentType">
+              <option>Frontend</option>
+              <option>API</option>
+              <option>Database</option>
+              <option>Admin Console</option>
+            </select>
+            <button type="button" id="addComponent">Add</button>
+          </div>
+
+          <div id="componentBoard" class="list-board"></div>
+        </section>
+
+        <section class="step" data-step="3">
+          <div class="section-head">
+            <h2>Data Types</h2>
+            <p>Capture what sensitive or important data the system processes.</p>
+          </div>
+
+          <div class="builder-row">
+            <input id="dataInput" placeholder="PII, Session Tokens, Payment Data..." />
+            <button type="button" id="addData">Add</button>
+          </div>
+
+          <div id="dataBoard" class="list-board chips"></div>
+        </section>
+
+        <section class="step" data-step="4">
+          <div class="section-head">
+            <h2>Connections</h2>
+            <p>Model trust boundaries and key communication paths.</p>
+          </div>
+
+          <div class="builder-row triple">
+            <input id="from" placeholder="From" />
+            <input id="to" placeholder="To" />
+            <select id="trust">
+              <option>internal</option>
+              <option>internet</option>
+            </select>
+            <button type="button" id="addConnection">Add</button>
+          </div>
+
+          <div id="connectionBoard" class="list-board"></div>
+        </section>
+
+        <section class="step" data-step="5">
+          <div class="section-head">
+            <h2>Analyze</h2>
+            <p>Generate the threat model using the selected framework.</p>
+          </div>
+
+          <div class="review-panel">
+            <div class="review-stat">
+              <span>Ready to analyze</span>
+              <strong>Use Generate Threat Model</strong>
+            </div>
+          </div>
+        </section>
+      </form>
+    </aside>
+
+    <main class="content">
+      <section class="hero">
+        <div>
+          <span class="eyebrow">Enterprise Prototype</span>
+          <h2>Architect faster. Threat model with structure.</h2>
+          <p>A cleaner interface for capturing architecture context and reviewing generated findings.</p>
+        </div>
+      </section>
+
+      <section id="summaryCard" class="panel hidden"></section>
+      <section id="results" class="results">
+        <div class="empty-state large">
+          <h3>No threat model generated yet</h3>
+          <p>Choose a framework, enter system details, and run the analysis.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
