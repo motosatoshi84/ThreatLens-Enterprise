@@ -7,7 +7,7 @@
 
 An AI-powered threat modelling tool that analyses your system architecture and generates structured security findings mapped to **NIST 800-53 controls** — across STRIDE, LINDDUN, OWASP, MITRE ATT&CK, NIST CSF, and PASTA frameworks.
 
-![Demo](demo.gif)
+![Demo](demo_web.gif)
 
 ---
 
